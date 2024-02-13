@@ -1,7 +1,6 @@
-from flask import current_app
-from flask import g
 import psycopg2
-from settings import DB_USER, DB_NAME, DB_HOST, DB_PASSWORD, DEBUG, TESTING
+from flask import current_app, g
+from settings import DB_HOST, DB_NAME, DB_PASSWORD, DB_USER, DEBUG, TESTING
 
 conn = psycopg2.connect(host = DB_HOST, database = DB_NAME,
         user = DB_USER, password = DB_PASSWORD)
@@ -10,6 +9,7 @@ def get_db():
     if "db" not in g:
         g.db = psycopg2.connect(user = current_app.config['DB_USER'],
                 password = current_app.config['DB_PASSWORD'],
+                host = DB_HOST,
             dbname = current_app.config['DATABASE'])
     return g.db
 

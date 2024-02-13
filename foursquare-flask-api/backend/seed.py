@@ -1,7 +1,7 @@
 import psycopg2
-from src.db import *
-from src import *
-from src.models import *
+from api.src import *
+from api.src.db import *
+from api.src.models import *
 
 cursor = conn.cursor()
 
